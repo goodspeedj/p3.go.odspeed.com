@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Network Calculator - DWA15 Project #3</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/p3-main.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div id="content" class="span12">
+        <form id="netmask">
+
+          <table>
+            <tr>
+              <td><label for="ip_address">IP Address: </label></td>
+              <td><input id="ip_address" type="text" class="form-control" name="ip_address"></td>
+            </tr>
+            <tr>
+              <td><label for="netmask">Netmask: </label></td>
+              <td><input id="netmask" type="text" class="form-control" name="netmask"></td>
+            </tr>
+            <tr>
+              <td><label for="cidr">CIDR Notation: </label></td>
+              <td><input id="cidr" type="text" class="form-control" name="cidr"></td>
+            </tr>
+            <tr>
+              <td><label for="num_hosts">Number of Hosts: </label></td>
+              <td><input id="num_hosts" type="text" class="form-control" name="num_hosts"></td>
+            </tr>
+          </table>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery-2.0.3.min.js"></script>
+  <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
