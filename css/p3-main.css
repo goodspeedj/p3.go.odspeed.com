@@ -3,11 +3,7 @@ body {
   font-size: 16px;
 }
 
-td {
-  padding: 15px;
-}
-
-#content {
-  max-width: 600px;
+.content {
+  max-width: 400px;
   margin: 0 auto;
 }
