@@ -24,6 +24,13 @@ label {
   margin: 0px auto;
 }
 
+.error {
+  color: red;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+
 .row {
   margin: 10px;
 }
