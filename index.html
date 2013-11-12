@@ -41,7 +41,7 @@
         <div id="slider"></div>
       </div>
       <div class="col-md-1 cidr">
-        <input type="text" class="cidr" id="cidr_val" />
+        <input type="text" class="cidr cidr_calc" />
       </div>
     </div>
     <div class="row">
@@ -52,58 +52,51 @@
         <input id="num_hosts" type="text" class="form-control" name="num_hosts">
       </div>
     </div>
-  </div>
 
-  <!--
-  <div class="container">
     <div class="row">
-
-      <div class="span12 content">
-        <form id="netmask">
-
-          <table border="1">
-            <tr>
-              <td><label for="ip_address">IP Address: </label></td>
-              <td colspan="2"><input id="ip_address" type="text" class="form-control" name="ip_address"></td>
-            </tr>
-            <tr>
-              <td><label for="mask">Netmask: </label></td>
-              <td colspan="2"><input id="mask" type="text" class="form-control" name="mask"></td>
-            </tr>
-            <tr>
-              <td><label for="cidr">CIDR Notation: </label></td>
-              <td><div id="slider"></div></td>
-              <td class="small"><input class="small" type="text" id="cidr" /></td>
-            </tr>
-            <tr>
-              <td><label for="num_hosts">Number of Hosts: </label></td>
-              <td colspan="2"><input id="num_hosts" type="text" class="form-control" name="num_hosts"></td>
-            </tr>
-          </table>
-
-        </form>
+      <div class="col-md-4">
+        IP Address:
+      </div>
+      <div class="col-md-8">
+        <div id="ip_calc"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        Netmask:
+      </div>
+      <div class="col-md-8">
+        <div id="mask_calc"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        CIDR:
+      </div>
+      <div class="col-md-8">
+        <input type="text" class="cidr cidr_calc" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        # Hosts:
+      </div>
+      <div class="col-md-8">
+        <div id="num_hosts_calc"></div>
       </div>
     </div>
   </div>
-  -->
+
 
   <script type="text/javascript">
-    $(document).ready(function() {
-        $("#mask").prop( "disabled", true );
-        $("#num_hosts").prop( "disabled", true );
-        $("#slider").slider({
-            min: 0,
-            max: 32,
-            slide: function( event, ui ) {
-                $("#cidr_val").val(ui.value);
-            }
 
-        });
-        $("#cidr_val").val($("#slider").slider("value"));
-    });
+      //$("#mask").prop( "disabled", true );
+      //$("#num_hosts").prop( "disabled", true );
+
   </script>
 
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/network-calc.js"></script>
 </body>
 
 </html>
