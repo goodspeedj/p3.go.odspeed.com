@@ -16,31 +16,68 @@
 
 <body>
 
+  <div class="container content">
+    <div class="row">
+      <div class="col-md-4">
+        <label for="ip_address">IP Address: </label>
+      </div>
+      <div class="col-md-8">
+        <input id="ip_address" type="text" class="form-control" name="ip_address">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="mask">Netmask: </label>
+      </div>
+      <div class="col-md-8">
+        <input id="mask" type="text" class="form-control" name="mask">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="cidr">CIDR: </label>
+      </div>
+      <div class="col-md-7">
+        <div id="slider"></div>
+      </div>
+      <div class="col-md-1 cidr">
+        <input type="text" class="cidr" id="cidr_val" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="num_hosts"># Hosts: </label>
+      </div>
+      <div class="col-md-8">
+        <input id="num_hosts" type="text" class="form-control" name="num_hosts">
+      </div>
+    </div>
+  </div>
+
+  <!--
   <div class="container">
     <div class="row">
 
       <div class="span12 content">
         <form id="netmask">
 
-          <table>
+          <table border="1">
             <tr>
               <td><label for="ip_address">IP Address: </label></td>
-              <td><input id="ip_address" type="text" class="form-control" name="ip_address"></td>
+              <td colspan="2"><input id="ip_address" type="text" class="form-control" name="ip_address"></td>
             </tr>
             <tr>
               <td><label for="mask">Netmask: </label></td>
-              <td><input id="mask" type="text" class="form-control" name="mask"></td>
+              <td colspan="2"><input id="mask" type="text" class="form-control" name="mask"></td>
             </tr>
             <tr>
               <td><label for="cidr">CIDR Notation: </label></td>
-              <!--
-              <td><input id="cidr" type="text" class="form-control" name="cidr"></td>
-              -->
-              <td><div id="slider"></div><input type="text" id="cidr" style="border: 0; color: #f6931f; font-weight: bold;" /></td>
+              <td><div id="slider"></div></td>
+              <td class="small"><input class="small" type="text" id="cidr" /></td>
             </tr>
             <tr>
               <td><label for="num_hosts">Number of Hosts: </label></td>
-              <td><input id="num_hosts" type="text" class="form-control" name="num_hosts"></td>
+              <td colspan="2"><input id="num_hosts" type="text" class="form-control" name="num_hosts"></td>
             </tr>
           </table>
 
@@ -48,6 +85,7 @@
       </div>
     </div>
   </div>
+  -->
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -57,11 +95,11 @@
             min: 0,
             max: 32,
             slide: function( event, ui ) {
-                $("#cidr").val(ui.value);
+                $("#cidr_val").val(ui.value);
             }
 
         });
-        $("#cidr").val($("#slider").slider("value"));
+        $("#cidr_val").val($("#slider").slider("value"));
     });
   </script>
 
