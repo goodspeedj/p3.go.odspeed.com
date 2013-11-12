@@ -8,6 +8,10 @@
 
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/p3-main.css">
+  <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.10.3.custom.min.css">
+
+  <script src="js/jquery-2.0.3.min.js"></script>
+  <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
 </head>
 
 <body>
@@ -15,7 +19,7 @@
   <div class="container">
     <div class="row">
 
-      <div id="content" class="span12">
+      <div class="span12 content">
         <form id="netmask">
 
           <table>
@@ -24,12 +28,15 @@
               <td><input id="ip_address" type="text" class="form-control" name="ip_address"></td>
             </tr>
             <tr>
-              <td><label for="netmask">Netmask: </label></td>
-              <td><input id="netmask" type="text" class="form-control" name="netmask"></td>
+              <td><label for="mask">Netmask: </label></td>
+              <td><input id="mask" type="text" class="form-control" name="mask"></td>
             </tr>
             <tr>
               <td><label for="cidr">CIDR Notation: </label></td>
+              <!--
               <td><input id="cidr" type="text" class="form-control" name="cidr"></td>
+              -->
+              <td><div id="slider"></div><input type="text" id="cidr" style="border: 0; color: #f6931f; font-weight: bold;" /></td>
             </tr>
             <tr>
               <td><label for="num_hosts">Number of Hosts: </label></td>
@@ -42,8 +49,22 @@
     </div>
   </div>
 
-  <script src="js/jquery-2.0.3.min.js"></script>
-  <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $("#mask").prop( "disabled", true );
+        $("#num_hosts").prop( "disabled", true );
+        $("#slider").slider({
+            min: 0,
+            max: 32,
+            slide: function( event, ui ) {
+                $("#cidr").val(ui.value);
+            }
+
+        });
+        $("#cidr").val($("#slider").slider("value"));
+    });
+  </script>
+
   <script src="js/bootstrap.min.js"></script>
 </body>
 
