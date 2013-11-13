@@ -1,6 +1,8 @@
 /**
  * Function to determine the netmask based on CIDR notation.  Based on example from:
- * Stack
+ * StackOverflow, "Converting CIDR address to subnet mask and network address", 
+ * May 31, 2010, Accessed November 13, 2013, 
+ * http://stackoverflow.com/questions/2942299/converting-cidr-address-to-subnet-mask-and-network-address 
  */
 function getNetmask(cidr) {
 	var mask = 0xffffffff << (32 - cidr);
