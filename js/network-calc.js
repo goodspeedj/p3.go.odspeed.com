@@ -1,4 +1,14 @@
 /**
+ * Function to determine the netmask based on CIDR notation.  Based on example from:
+ * Stack
+ */
+function getNetmask(cidr) {
+	var mask = 0xffffffff << (32 - cidr);
+	var maskStr = [ (mask >>> 24) , (mask >> 16 & 0xff) , (mask >> 8 & 0xff) , (mask & 0xff) ].join('.'); 
+	return maskStr;
+}
+
+/**
  * Create the CIDR slider
  */
 $("#slider").slider({
@@ -39,8 +49,10 @@ $(".cidr_calc").val($("#slider").slider("value"));
  * Updates the number of hosts based on the CIDR slider
  */
 $("#slider").on("slide", function(event, ui) {
-    var total = Math.pow(2, (32 - ui.value)) - 2;
+    var total   = Math.pow(2, (32 - ui.value)) - 2;
+    var netmask = getNetmask(ui.value);
     $("#num_hosts_calc").html(total);
+    $("#mask_calc").html(netmask);
 });
 
 
@@ -82,6 +94,3 @@ $(function() {
 });
 
 
-/**
- * Function to determine the number of hosts in a network based on the cidr notation
- */
