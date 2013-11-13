@@ -7,8 +7,11 @@
 function getNetmask(cidr) {
 	var mask = 0xffffffff << (32 - cidr);
 	var maskStr = [ (mask >>> 24) , (mask >> 16 & 0xff) , (mask >> 8 & 0xff) , (mask & 0xff) ].join('.'); 
+
+    console.log(mask + ", " + maskStr);
 	return maskStr;
 }
+
 
 /**
  * Create the CIDR slider
