@@ -4,10 +4,9 @@
 $("#slider").slider({
     min: 0,
     max: 32,
-    slide: function( event, ui ) {
-    	$(".cidr_calc").val(ui.value);
+    slide: function(event, ui) {
+    	$(".cidr_calc").val(ui.value);   
     }
-
 });
 
 
@@ -34,6 +33,15 @@ $("#mask").keyup(function() {
  * results section
  */
 $(".cidr_calc").val($("#slider").slider("value"));
+
+
+/**
+ * Updates the number of hosts based on the CIDR slider
+ */
+$("#slider").on("slide", function(event, ui) {
+    var total = Math.pow(2, (32 - ui.value)) - 2;
+    $("#num_hosts_calc").html(total);
+});
 
 
 /**
@@ -72,3 +80,8 @@ $(function() {
         }
     });
 });
+
+
+/**
+ * Function to determine the number of hosts in a network based on the cidr notation
+ */
