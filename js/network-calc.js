@@ -7,8 +7,9 @@
 function getNetmask(cidr) {
 	var mask = 0xffffffff << (32 - cidr);
 	var maskStr = [ (mask >>> 24) , (mask >> 16 & 0xff) , (mask >> 8 & 0xff) , (mask & 0xff) ].join('.'); 
+    var bin = parseInt(mask, 10).toString(2);
 
-    console.log(mask + ", " + maskStr);
+    console.log(mask + ", " + maskStr + ", " + bin);
 	return maskStr;
 }
 
@@ -18,7 +19,7 @@ function getNetmask(cidr) {
  */
 $("#slider").slider({
     min: 0,
-    max: 32,
+    max: 30,
     slide: function(event, ui) {
     	$(".cidr_calc").val(ui.value);   
     }
