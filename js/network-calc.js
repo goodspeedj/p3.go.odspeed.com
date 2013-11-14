@@ -1,3 +1,33 @@
+
+/**
+ * Function to pad binary numbers with 0 up to 8
+ */
+function padBinary(orig) {
+    var output = orig;
+    
+    if (output.length < 8) {
+        for (var i = 0; i < 8; i++) {
+            
+            output = "0" + output;
+        }
+    }
+
+    return output;
+}
+
+
+/**
+ * Converts a decimal number to a binary value
+ */
+function decToBin(val) {
+    var base   = 2;
+    var intNum = parseInt(val);
+    var binary = padBinary(intNum.toString(base));
+
+    return binary;
+}
+
+
 /**
  * Function to determine the netmask based on CIDR notation.  Based on example from:
  * StackOverflow, "Converting CIDR address to subnet mask and network address", 
