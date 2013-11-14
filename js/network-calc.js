@@ -17,7 +17,7 @@ function padBinary(orig) {
 
 
 /**
- * Converts a decimal number to a binary value
+ * Converts a decimal number to the binary equivilent
  */
 function decToBin(val) {
     var base   = 2;
@@ -26,6 +26,56 @@ function decToBin(val) {
 
     return binary;
 }
+
+
+/**
+ * Converts a decimal number to the hex equivilent
+ */
+function decToHex(val) {
+    var base = 16;
+    
+    if (val < 0) {
+        val = 0xFFFFFFFF + val + 1;
+    }
+
+    return val.toString(base);
+}
+
+
+/**
+ * Convert a full IP to binary with out dots
+ */
+function ipToBin(ip) {
+    var ip_arr = ip.split(".");
+    var ip_bin;
+
+    for (var i = 0; i < ip_arr.length; i++) {
+        ip_bin = ip_bin + decToBin(ip_arr[i]);
+    }
+
+    return ip_bin;
+}
+
+
+/**
+ * Convert a full IP to hex
+ */
+function ipToHex(ip) {
+    var ip_arr = ip.split(".");
+    var ip_hex = new Array();
+
+    for (var i = 0; i < ip_arr.length; i++) {
+        ip_hex[i] = decToHex(parseInt(ip_arr[i], 10));
+    }
+
+    return ip_hex;
+}
+
+console.log(ipToBin("192.168.1.6"));
+console.log(ipToBin("255.255.255.254"));
+console.log(decToHex(192));
+console.log(ipToHex("192.168.1.6"));
+console.log(ipToHex("255.255.255.254"));
 
 
 /**
