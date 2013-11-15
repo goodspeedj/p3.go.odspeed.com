@@ -95,6 +95,17 @@ function getNetmask(cidr) {
 
 
 /**
+ * Adds commas to numbers.  Based on example from:
+ * StackOverflow, "How to print a number with commas as thousands separators in JavaScript",
+ * May 25, 2010, Accessed November 14, 2013,
+ * http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+ */
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
+/**
  * Create the CIDR slider
  */
 $("#slider").slider({
