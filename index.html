@@ -17,78 +17,83 @@
 <body>
 
   <div class="container content">
-    <form id="netmask">
+
+    <div id="input">
+      <form id="netmask">
+        <div class="row">
+          <div class="col-md-4">
+            <label for="ip_address">IP Address: </label>
+          </div>
+          <div class="col-md-8">
+            <input id="ip_address" type="text" class="form-control" name="ip_address">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label for="mask">Netmask: </label>
+          </div>
+          <div class="col-md-8">
+            <input id="mask" type="text" class="form-control" name="mask">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label for="cidr">CIDR: </label>
+          </div>
+          <div class="col-md-7">
+            <div id="slider"></div>
+          </div>
+          <div class="col-md-1 cidr">
+            <input type="text" class="cidr cidr_calc" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label for="num_hosts"># Hosts: </label>
+          </div>
+          <div class="col-md-8">
+            <input id="num_hosts" type="text" class="form-control" name="num_hosts">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div id="output">
       <div class="row">
-        <div class="col-md-4">
-          <label for="ip_address">IP Address: </label>
-        </div>
-        <div class="col-md-8">
-          <input id="ip_address" type="text" class="form-control" name="ip_address">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <label for="mask">Netmask: </label>
-        </div>
-        <div class="col-md-8">
-          <input id="mask" type="text" class="form-control" name="mask">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <label for="cidr">CIDR: </label>
+        <div class="col-md-5">
+          IP Address:
         </div>
         <div class="col-md-7">
-          <div id="slider"></div>
-        </div>
-        <div class="col-md-1 cidr">
-          <input type="text" class="cidr cidr_calc" />
+          <div id="ip_calc"></div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4">
-          <label for="num_hosts"># Hosts: </label>
+        <div class="col-md-5">
+          Netmask:
         </div>
-        <div class="col-md-8">
-          <input id="num_hosts" type="text" class="form-control" name="num_hosts">
+        <div class="col-md-7">
+          <div id="mask_calc"></div>
         </div>
       </div>
-    </form>
+      <div class="row">
+        <div class="col-md-5">
+          CIDR:
+        </div>
+        <div class="col-md-7">
+          <div id="cidr_calc"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          # Hosts:
+        </div>
+        <div class="col-md-7">
+          <div id="num_hosts_calc"></div>
+        </div>
+      </div>
+    </div>
 
-    <div class="row">
-      <div class="col-md-4">
-        IP Address:
-      </div>
-      <div class="col-md-8">
-        <div id="ip_calc"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        Netmask:
-      </div>
-      <div class="col-md-8">
-        <div id="mask_calc"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        CIDR:
-      </div>
-      <div class="col-md-8">
-        <input type="text" class="cidr cidr_calc" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        # Hosts:
-      </div>
-      <div class="col-md-8">
-        <div id="num_hosts_calc"></div>
-      </div>
-    </div>
   </div>
-
 
   <script type="text/javascript">
 

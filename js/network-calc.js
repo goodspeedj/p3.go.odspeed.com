@@ -150,6 +150,7 @@ $("#slider").on("slide", function(event, ui) {
     var netmask = getNetmask(ui.value);
     $("#num_hosts_calc").html(numberWithCommas(total));
     $("#mask_calc").html(netmask);
+    $("#cidr_calc").html(ui.value);
 });
 
 
