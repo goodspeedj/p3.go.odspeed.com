@@ -58,6 +58,29 @@ function getNetworkAddress(ip, mask) {
 
 
 /**
+ * Will get the last address in the network.  
+ *  1. Perform a bitwise NOT on the network mask which gives the size of the 
+ *     network range.
+ *  2. Get the network address
+ *  3. Split off the last octet of the network address
+ *  4. Add the last octet of the network address to the value of the netmask
+ *     compliment (NOT)
+ *  5. Re-construct the IP address
+ */
+function getLastAddress(ip, mask) {
+    var not_mask    = (~ipToNum(mask));
+    var net_addr    = numToIP(getNetworkAddress(ip, mask));
+    var ip_arr      = net_addr.split(".");
+    var last_oct    = ip_arr[3];
+    var last_ip_oct = last_oct + not_mask;
+    var last_ip     = (ip_arr[0] + "." + ip_arr[1] + "." + ip_arr[2] + "." + last_ip_oct);
+    console.log(last_ip_oct);
+
+    return last_ip;
+}
+
+
+/**
  * Converts a number of a binary representation (i.e.: -1062731514) back into 
  * an IP address.
  */
@@ -188,6 +211,7 @@ $("#slider").on("slide", function(event, ui) {
     $("#mask_calc").html(netmask);
     $("#cidr_calc").html(ui.value);
     $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+    $("#last_addr_calc").html(getLastAddress(ip, netmask));
 });
 
 
