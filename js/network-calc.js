@@ -148,7 +148,7 @@ $(".cidr_calc").val($("#slider").slider("value"));
 $("#slider").on("slide", function(event, ui) {
     var total   = Math.pow(2, (32 - ui.value)) - 2;
     var netmask = getNetmask(ui.value);
-    $("#num_hosts_calc").html(total);
+    $("#num_hosts_calc").html(numberWithCommas(total));
     $("#mask_calc").html(netmask);
 });
 
