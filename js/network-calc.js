@@ -29,8 +29,46 @@ function decToBin(val) {
 
 
 /**
- * Converts a decimal number to the hex equivilent
+ * Will convert an IP address to it's binary number equivilent.  For example the
+ * IP of 192.168.1.6 is 110000001010100000000000100000000110 in binary which 
+ * translates to -1062731514 as a number.
  */
+function ipToNum(ip) {
+    var ip_num = ip.match(/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/);
+    return (+ip_num[1]<<24) + (+ip_num[2]<<16) + (+ip_num[3]<<8) + (+ip_num[4]);
+}
+
+
+/**
+ * Gets the first address in the network by performing a bitwise AND on the IP
+ * and Netmask.  Will return the number of the binary representation.  For 
+ * example:
+ * IP      = 192.168.1.6   = -1062731514
+ * Netmask = 255.255.255.0 = -256
+ * 
+ * Bitwise AND:
+ * (-1062731514 & -256) = -1062731520 which can be converted to 192.168.1.0
+ */
+function getNetworkAddress(ip, mask) {
+    var ip_num   = ipToNum(ip);
+    var mask_num = ipToNum(mask);
+
+    return (ip_num & mask_num);
+}
+
+
+/**
+ * Converts a number of a binary representation (i.e.: -1062731514) back into 
+ * an IP address.
+ */
+function numToIP(num) {
+    return [ (num >>> 24) , (num >> 16 & 0xff) , (num >> 8 & 0xff) , (num & 0xff) ].join('.');
+}
+
+
+/**
+ * Converts a decimal number to the hex equivilent
+ *
 function decToHex(val) {
     var base = 16;
     
@@ -40,6 +78,7 @@ function decToHex(val) {
 
     return val.toString(base);
 }
+*/
 
 
 /**
@@ -59,7 +98,7 @@ function ipToBin(ip) {
 
 /**
  * Convert a full IP to hex
- */
+ *
 function ipToHex(ip) {
     var ip_arr = ip.split(".");
     var ip_hex = new Array();
@@ -70,12 +109,7 @@ function ipToHex(ip) {
 
     return ip_hex;
 }
-
-console.log(ipToBin("192.168.1.6"));
-console.log(ipToBin("255.255.255.254"));
-console.log(decToHex(192));
-console.log(ipToHex("192.168.1.6"));
-console.log(ipToHex("255.255.255.254"));
+*/
 
 
 /**
@@ -89,7 +123,6 @@ function getNetmask(cidr) {
 	var maskStr = [ (mask >>> 24) , (mask >> 16 & 0xff) , (mask >> 8 & 0xff) , (mask & 0xff) ].join('.'); 
     var bin = parseInt(mask, 10).toString(2);
 
-    console.log(mask + ", " + maskStr + ", " + bin);
 	return maskStr;
 }
 
@@ -149,9 +182,12 @@ $(".cidr_calc").val($("#slider").slider("value"));
 $("#slider").on("slide", function(event, ui) {
     var total   = Math.pow(2, (32 - ui.value)) - 2;
     var netmask = getNetmask(ui.value);
+    var ip      = $("#ip_address").val();
+
     $("#num_hosts_calc").html(numberWithCommas(total));
     $("#mask_calc").html(netmask);
     $("#cidr_calc").html(ui.value);
+    $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
 });
 
 
