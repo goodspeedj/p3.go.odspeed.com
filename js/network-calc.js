@@ -105,6 +105,7 @@ function numberWithCommas(x) {
 }
 
 
+
 /**
  * Create the CIDR slider
  */
@@ -192,3 +193,22 @@ $(function() {
 });
 
 
+$("#mask").focus(function() {
+    $("#mask").prop('disabled', false);
+    $("#num_hosts").prop('disabled', true);
+});
+
+$("#num_hosts").focus(function() {
+    $("#num_hosts").prop('disabled', false);
+    $("#mask").prop('disabled', true);
+});
+
+$("#mask").blur(function() {
+    $("#mask").prop('disabled', false);
+    $("#num_hosts").prop('disabled', false);
+});
+
+$("#num_hosts").blur(function() {
+    $("#mask").prop('disabled', false);
+    $("#num_hosts").prop('disabled', false);
+});
