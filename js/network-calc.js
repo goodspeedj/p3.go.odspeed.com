@@ -69,7 +69,7 @@ function getNetworkAddress(ip, mask) {
  *  6. Add the last IP binary to the network address binary
  *  7. Return the last IP as a string
  */
-function getLastAddress(ip, mask) {
+function getBroadcast(ip, mask) {
     var not_mask     = (~ipToNum(mask));               
     var net_addr_bin = getNetworkAddress(ip, mask);     
     var net_addr     = numToIP(net_addr_bin);           
@@ -79,6 +79,23 @@ function getLastAddress(ip, mask) {
     var last_ip      = (+last_ip_oct + +net_addr_bin);  
 
     return numToIP(last_ip);
+}
+
+
+/**
+ * Get the host address range.  Add one to the network address and subtract
+ * one from the broadcast address
+ */
+function getRange(ip, mask) {
+    var first = getNetworkAddress(ip, mask); 
+    var last  = getBroadcast(ip, mask);
+
+    last  = ipToNum(last);
+
+    first = +first + 1;
+    last  = +last - 1; 
+
+    return numToIP(first) + " - " + numToIP(last);
 }
 
 
@@ -213,7 +230,8 @@ $("#slider").on("slide", function(event, ui) {
     $("#mask_calc").html(netmask);
     $("#cidr_calc").html(ui.value);
     $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
-    $("#last_addr_calc").html(getLastAddress(ip, netmask));
+    $("#last_addr_calc").html(getBroadcast(ip, netmask));
+    $("#range_calc").html(getRange(ip, netmask));
 });
 
 
