@@ -7,9 +7,15 @@ label {
   margin-top: 7px;
 }
 
+#input {
+  max-width: 400px;
+  margin: 0px auto;
+}
+
 #output {
-  margin-top: 40px;
-  padding: 10px;
+  max-width: 550px;
+  margin: 0px auto;
+  padding: 20px;
   font-family: Consolas, 'Courier New', monospace;
   background-color: #F0F0F0;
   border: 1px solid gray;
@@ -29,11 +35,6 @@ label {
   margin-top: 4px;
   margin-left: 0px;
   padding-left: 0px;
-}
-
-.content {
-  max-width: 400px;
-  margin: 0px auto;
 }
 
 .error {
