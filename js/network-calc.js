@@ -61,22 +61,24 @@ function getNetworkAddress(ip, mask) {
  * Will get the last address in the network.  
  *  1. Perform a bitwise NOT on the network mask which gives the size of the 
  *     network range.
- *  2. Get the network address
- *  3. Split off the last octet of the network address
- *  4. Add the last octet of the network address to the value of the netmask
+ *  2. Get the network address as a binary number
+ *  3. Convert the binary number back to dotted notation
+ *  4. Split off the last octet of the network address
+ *  5. Add the last octet of the network address to the value of the netmask
  *     compliment (NOT)
- *  5. Re-construct the IP address
+ *  6. Add the last IP binary to the network address binary
+ *  7. Return the last IP as a string
  */
 function getLastAddress(ip, mask) {
-    var not_mask    = (~ipToNum(mask));
-    var net_addr    = numToIP(getNetworkAddress(ip, mask));
-    var ip_arr      = net_addr.split(".");
-    var last_oct    = ip_arr[3];
-    var last_ip_oct = last_oct + not_mask;
-    var last_ip     = (ip_arr[0] + "." + ip_arr[1] + "." + ip_arr[2] + "." + last_ip_oct);
-    console.log(last_ip_oct);
+    var not_mask     = (~ipToNum(mask));               
+    var net_addr_bin = getNetworkAddress(ip, mask);     
+    var net_addr     = numToIP(net_addr_bin);           
+    var ip_arr       = net_addr.split(".");              
+    var last_oct     = ip_arr[3];
+    var last_ip_oct  = last_oct + not_mask;             
+    var last_ip      = (+last_ip_oct + +net_addr_bin);  
 
-    return last_ip;
+    return numToIP(last_ip);
 }
 
 
