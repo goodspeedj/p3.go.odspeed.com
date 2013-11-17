@@ -185,7 +185,7 @@ function numberWithCommas(x) {
  * Create the CIDR slider
  */
 $("#slider").slider({
-    min: 0,
+    min: 1,
     max: 30,
     slide: function(event, ui) {
     	$(".cidr_calc").val(ui.value);   
