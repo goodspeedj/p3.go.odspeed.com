@@ -7,9 +7,30 @@ label {
   margin-top: 7px;
 }
 
+#footer {
+  padding-top: 15px;
+  padding-bottom: 0px;
+  text-align: center;
+  background: #F0F0F0;
+  height: 5px;
+  vertical-align: bottom;
+  border-top: solid 1px gray;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #input {
   max-width: 400px;
   margin: 0px auto;
+  margin-bottom: 30px;
+}
+
+#intro {
+  max-width: 550px;
+  margin: 0px auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 #output {
@@ -17,7 +38,7 @@ label {
   margin: 0px auto;
   padding: 20px;
   font-family: Consolas, 'Courier New', monospace;
-  background-color: #F0F0F0;
+  background-color: #EBF4FA;
   border: 1px solid gray;
 }
 
@@ -28,6 +49,10 @@ label {
 
 .bold {
   font-weight: bold;
+}
+
+.center {
+  text-align: center;
 }
 
 .cidr {
@@ -42,6 +67,11 @@ label {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
+}
+
+.footer-text {
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .row {
