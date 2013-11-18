@@ -1,3 +1,5 @@
+var ip_regex = "\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
+
 
 /**
  * Function to pad binary numbers with 0 up to 8
@@ -206,8 +208,16 @@ $("#ip_address").keyup(function() {
  * Output the value of the Netmask field to the results section
  */
 $("#mask").keyup(function() {
-    var value = $(this).val();
-    $("#mask_calc").html(value);
+    var netmask = $(this).val();
+    var ip      = $("#ip_address").val();
+    $("#mask_calc").html(netmask);
+
+    // if there is a valid netmask populate the results
+    if (netmask.match(ip_regex)) {
+        $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+        $("#last_addr_calc").html(getBroadcast(ip, netmask));
+        $("#range_calc").html(getRange(ip, netmask));
+    }
 });
 
 
@@ -251,8 +261,7 @@ $("#num_hosts").keyup(function() {
  */
 $(function() {
     $.validator.addMethod('IP4Checker', function(value) {
-    var ip = "\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
-        return value.match(ip);
+        return value.match(ip_regex);
     }, 'Please enter a valid IP address');
 
     $('#netmask').validate({
@@ -273,9 +282,15 @@ $(function() {
 });
 
 
+
+/**
+ * The following section enables and disables the different form fields based
+ * on the form that the user chooses - only one can be active at a time
+ */
 $("#mask").focus(function() {
     $("#mask").prop('disabled', false);
     $("#num_hosts").prop('disabled', true);
+    $("#num_hosts").val("");
     $("#slider").slider("disable");
 
     // Blank out previous values
@@ -286,6 +301,7 @@ $("#mask").focus(function() {
 $("#num_hosts").focus(function() {
     $("#num_hosts").prop('disabled', false);
     $("#mask").prop('disabled', true);
+    $("#mask").val("");
     $("#slider").slider("disable");
 
     // Blank out previous values
@@ -296,7 +312,9 @@ $("#num_hosts").focus(function() {
 $("#slider .ui-slider-handle").focus(function() {
     $("#slider").slider("enable");
     $("#mask").prop('disabled', true);
+    $("#mask").val("");
     $("#num_hosts").prop('disabled', true);
+    $("#num_hosts").val("");
 
     // Blank out previous values
     $("#mask_calc").html("");
