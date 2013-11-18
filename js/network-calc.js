@@ -276,19 +276,47 @@ $(function() {
 $("#mask").focus(function() {
     $("#mask").prop('disabled', false);
     $("#num_hosts").prop('disabled', true);
+    $("#slider").slider("disable");
+
+    // Blank out previous values
+    $("#num_hosts_calc").html("");
+    $("#cidr_calc").html("");
 });
 
 $("#num_hosts").focus(function() {
     $("#num_hosts").prop('disabled', false);
     $("#mask").prop('disabled', true);
+    $("#slider").slider("disable");
+
+    // Blank out previous values
+    $("#mask_calc").html("");
+    $("#cidr_calc").html("");
+});
+
+$("#slider .ui-slider-handle").focus(function() {
+    $("#slider").slider("enable");
+    $("#mask").prop('disabled', true);
+    $("#num_hosts").prop('disabled', true);
+
+    // Blank out previous values
+    $("#mask_calc").html("");
+    $("#num_hosts_calc").html("");
 });
 
 $("#mask").blur(function() {
     $("#mask").prop('disabled', false);
     $("#num_hosts").prop('disabled', false);
+    $("#slider").slider("enable");
 });
 
 $("#num_hosts").blur(function() {
     $("#mask").prop('disabled', false);
     $("#num_hosts").prop('disabled', false);
+    $("#slider").slider("enable");
+});
+
+$("#slider .ui-slider-handle").blur(function() {
+    $("#mask").prop('disabled', false);
+    $("#num_hosts").prop('disabled', false);
+    $("#slider").slider("enable");
 });
