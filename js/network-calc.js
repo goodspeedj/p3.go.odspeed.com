@@ -1,3 +1,7 @@
+
+// Reset the form on reload
+$("#calculator")[0].reset();
+
 // Regex to match valid IP addresses
 var ip_regex = "\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
 
@@ -191,6 +195,10 @@ function getCIDR(mask) {
 }
 
 
+function getTotalHosts(cidr) {
+    return Math.pow(2, (32 - cidr)) - 2;
+}
+
 /**
  * Adds commas to numbers.  Based on example from:
  * StackOverflow, "How to print a number with commas as thousands separators in JavaScript",
@@ -234,6 +242,9 @@ $("#mask").keyup(function() {
 
     // if there is a valid netmask populate the results
     if (netmask.match(ip_regex)) {
+        var total = getTotalHosts(getCIDR(netmask));
+        $("#num_hosts_calc").html(numberWithCommas(total));
+        $("#cidr_calc").html(getCIDR(netmask));
         $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
         $("#last_addr_calc").html(getBroadcast(ip, netmask));
         $("#range_calc").html(getRange(ip, netmask));
@@ -252,7 +263,7 @@ $(".cidr_calc").val($("#slider").slider("value"));
  * Updates the number of hosts based on the CIDR slider
  */
 $("#slider").on("slide", function(event, ui) {
-    var total   = Math.pow(2, (32 - ui.value)) - 2;
+    var total   = getTotalHosts(ui.value);
     var netmask = getNetmask(ui.value);
     var ip      = $("#ip_address").val();
 
@@ -284,7 +295,7 @@ $(function() {
         return value.match(ip_regex);
     }, 'Please enter a valid IP address');
 
-    $('#netmask').validate({
+    $('#calculator').validate({
         rules: {
     	    ip_address: {
                 required: true,
