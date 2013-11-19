@@ -317,7 +317,7 @@ $(function() {
 /**
  * The following section enables and disables the different form fields based
  * on the form that the user chooses - only one can be active at a time
- */
+ 
 $("#mask").focus(function() {
     $("#mask").prop('disabled', false);
     $("#num_hosts").prop('disabled', true);
@@ -368,4 +368,24 @@ $("#slider .ui-slider-handle").blur(function() {
     $("#mask").prop('disabled', false);
     $("#num_hosts").prop('disabled', false);
     $("#slider").slider("enable");
+});
+*/
+
+$("#mask").click(function() {
+    $("#num_hosts").attr('ignore','true').css({
+        'background-color': 'gray'
+    }),
+    $("#mask").attr('ignore', 'false').css({
+        "background-color": "white"
+    })
+});
+
+$("#num_hosts").click(function() {
+    $("#mask").attr('ignore','true').css({
+        //'pointer-events':'none',
+        'background-color': 'gray'
+    }),
+    $("#num_hosts").attr('ignore', 'false').css({
+        "background-color": "white"
+    })
 });
