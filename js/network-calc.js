@@ -1,3 +1,4 @@
+// Regex to match valid IP addresses
 var ip_regex = "\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
 
 
@@ -168,6 +169,25 @@ function getNetmask(cidr) {
     var bin = parseInt(mask, 10).toString(2);
 
 	return maskStr;
+}
+
+
+/**
+ * Gets the CIDR notation by converting the netmask into binary and counting the 1's
+ */
+function getCIDR(mask) {
+    var mask_num = ipToBin(mask);
+    var mask_arr = mask_num.split("");
+    console.log(mask_arr);
+
+    var cidr = 0;
+    for (var i = 0; i < mask_arr.length; i++) {
+        if (mask_arr[i] == "1") {
+            cidr++;
+        }
+    }
+
+    return cidr;
 }
 
 
