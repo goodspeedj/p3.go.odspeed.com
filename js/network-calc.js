@@ -270,9 +270,12 @@ $("#slider").on("slide", function(event, ui) {
     $("#num_hosts_calc").html(numberWithCommas(total));
     $("#mask_calc").html(netmask);
     $("#cidr_calc").html(ui.value);
-    $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
-    $("#last_addr_calc").html(getBroadcast(ip, netmask));
-    $("#range_calc").html(getRange(ip, netmask));
+
+    if (ip) {
+        $("#last_addr_calc").html(getBroadcast(ip, netmask));
+        $("#range_calc").html(getRange(ip, netmask));
+        $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+    }
 });
 
 
@@ -296,6 +299,7 @@ $(function() {
     }, 'Please enter a valid IP address');
 
     $('#calculator').validate({
+        success: "valid",
         rules: {
     	    ip_address: {
                 required: true,
@@ -314,63 +318,6 @@ $(function() {
 
 
 
-/**
- * The following section enables and disables the different form fields based
- * on the form that the user chooses - only one can be active at a time
- 
-$("#mask").focus(function() {
-    $("#mask").prop('disabled', false);
-    $("#num_hosts").prop('disabled', true);
-    $("#num_hosts").val("");
-    $("#slider").slider("disable");
-
-    // Blank out previous values
-    $("#num_hosts_calc").html("");
-    $("#cidr_calc").html("");
-});
-
-$("#num_hosts").focus(function() {
-    $("#num_hosts").prop('disabled', false);
-    $("#mask").prop('disabled', true);
-    $("#mask").val("");
-    $("#slider").slider("disable");
-
-    // Blank out previous values
-    $("#mask_calc").html("");
-    $("#cidr_calc").html("");
-});
-
-$("#slider .ui-slider-handle").focus(function() {
-    $("#slider").slider("enable");
-    $("#mask").prop('disabled', true);
-    $("#mask").val("");
-    $("#num_hosts").prop('disabled', true);
-    $("#num_hosts").val("");
-
-    // Blank out previous values
-    $("#mask_calc").html("");
-    $("#num_hosts_calc").html("");
-});
-
-$("#mask").blur(function() {
-    $("#mask").prop('disabled', false);
-    $("#num_hosts").prop('disabled', false);
-    $("#slider").slider("enable");
-});
-
-$("#num_hosts").blur(function() {
-    $("#mask").prop('disabled', false);
-    $("#num_hosts").prop('disabled', false);
-    $("#slider").slider("enable");
-});
-
-$("#slider .ui-slider-handle").blur(function() {
-    $("#mask").prop('disabled', false);
-    $("#num_hosts").prop('disabled', false);
-    $("#slider").slider("enable");
-});
-*/
-
 $("#mask").click(function() {
 
     // enable the mask field
@@ -380,7 +327,7 @@ $("#mask").click(function() {
 
     // disable the num_hosts field
     $("#num_hosts").attr('ignore','true').css({
-        'background-color': '#D0D0D0'
+        'background-color': '#EBEBE4'
     });
     $("#num_hosts").val("");
     
@@ -401,13 +348,13 @@ $("#slider .ui-slider-handle").focus(function() {
 
     // disable the mask field
     $("#mask").attr('ignore','true').css({
-        'background-color': '#D0D0D0'
+        'background-color': '#EBEBE4'
     });
     $("#mask").val("");
 
     // disable the num hosts field
     $("#num_hosts").attr('ignore','true').css({
-        'background-color': '#D0D0D0'
+        'background-color': '#EBEBE4'
     });
     $("#num_hosts").val("");
 
@@ -426,7 +373,7 @@ $("#num_hosts").click(function() {
 
     // disable the mask field
     $("#mask").attr('ignore','true').css({
-        'background-color': '#D0D0D0'
+        'background-color': '#EBEBE4'
     });
     $("#mask").val("");
     
