@@ -372,20 +372,71 @@ $("#slider .ui-slider-handle").blur(function() {
 */
 
 $("#mask").click(function() {
-    $("#num_hosts").attr('ignore','true').css({
-        'background-color': 'gray'
-    }),
+
+    // enable the mask field
     $("#mask").attr('ignore', 'false').css({
         "background-color": "white"
-    })
+    });
+
+    // disable the num_hosts field
+    $("#num_hosts").attr('ignore','true').css({
+        'background-color': '#D0D0D0'
+    });
+    $("#num_hosts").val("");
+    
+    // disable the slider
+    $("#slider").removeClass("ui-state-default");
+    $("#slider").addClass("ui-state-disabled");
+
+    // Blank out previous values
+    $("#cidr_calc").html("");
+    $("#num_hosts_calc").html("");
 });
 
-$("#num_hosts").click(function() {
+
+$("#slider .ui-slider-handle").focus(function() {
+
+    // enable the slider
+    $("#slider").slider("enable");
+
+    // disable the mask field
     $("#mask").attr('ignore','true').css({
-        //'pointer-events':'none',
-        'background-color': 'gray'
-    }),
+        'background-color': '#D0D0D0'
+    });
+    $("#mask").val("");
+
+    // disable the num hosts field
+    $("#num_hosts").attr('ignore','true').css({
+        'background-color': '#D0D0D0'
+    });
+    $("#num_hosts").val("");
+
+    // Blank out previous values
+    $("#mask_calc").html("");
+    $("#num_hosts_calc").html("");
+});
+
+
+$("#num_hosts").click(function() {
+
+    // enable the num_hosts field
     $("#num_hosts").attr('ignore', 'false').css({
         "background-color": "white"
-    })
+    });
+
+    // disable the mask field
+    $("#mask").attr('ignore','true').css({
+        'background-color': '#D0D0D0'
+    });
+    $("#mask").val("");
+    
+    // disable the slider
+    $("#slider").removeClass("ui-state-default");
+    $("#slider").addClass("ui-state-disabled");
+
+    // Blank out previous values
+    $("#mask_calc").html("");
+    $("#cidr_calc").html("");
 });
+
+//$("#slider").slider("disable");
