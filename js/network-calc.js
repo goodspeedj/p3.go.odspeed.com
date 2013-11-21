@@ -68,7 +68,9 @@ function ipToBin(ip) {
  * translates to -1062731514 as a number.
  */
 function ipToNum(ip) {
+    console.log(ip);
     var ip_num = ip.match(/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/);
+    console.log("here: "+ ip_num[1]<<24);
     return (+ip_num[1]<<24) + (+ip_num[2]<<16) + (+ip_num[3]<<8) + (+ip_num[4]);
 }
 
@@ -123,7 +125,6 @@ function getBroadcast(ip, mask) {
 function getCIDR(mask) {
     var mask_num = ipToBin(mask);
     var mask_arr = mask_num.split("");
-    console.log(mask_arr);
 
     var cidr = 0;
     for (var i = 0; i < mask_arr.length; i++) {
@@ -169,7 +170,7 @@ function getCIDRFromHosts(hosts) {
     else if (hosts > 14)        { return 27; }
     else if (hosts > 6)         { return 28; }
     else if (hosts > 2)         { return 29; }
-    else (hosts > 1)            { return 30; }
+    else                        { return 30; }
 }
 
 
@@ -199,6 +200,7 @@ function getNetmask(cidr) {
  * (-1062731514 & -256) = -1062731520 which can be converted to 192.168.1.0
  */
 function getNetworkAddress(ip, mask) {
+    console.log("getNetworkAddress: " + ip);
     var ip_num   = ipToNum(ip);
     var mask_num = ipToNum(mask);
 
