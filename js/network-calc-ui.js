@@ -29,16 +29,30 @@ $("#slider").slider({
 
 
 /**
- * Output the value of the IP address field to the results section
+ * Output to the results section based on the ip address field
  */
 $("#ip_address").keyup(function() {
-    var value = $(this).val();
-    $("#ip_calc").html(value);
+    var ip      = $(this).val();
+    var netmask = $("#mask").val();
+    $("#ip_calc").html(ip);
+
+    if (ip.match(ip_regex)) {
+    	console.log("netmask: " + netmask);
+    	if (netmask && netmask.match(ip_regex)) {
+    		console.log("inner");
+    		var total = getTotalHosts(getCIDR(netmask));
+	        $("#num_hosts_calc").html(numberWithCommas(total));
+	        $("#cidr_calc").html(getCIDR(netmask));
+	        $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+	        $("#last_addr_calc").html(getBroadcast(ip, netmask));
+	        $("#range_calc").html(getRange(ip, netmask));
+    	}
+    }
 });
 
 
 /**
- * Output the value of the Netmask field to the results section
+ * Output to the results section based on the netmask field
  */
 $("#mask").keyup(function() {
     var netmask = $(this).val();
@@ -50,9 +64,12 @@ $("#mask").keyup(function() {
         var total = getTotalHosts(getCIDR(netmask));
         $("#num_hosts_calc").html(numberWithCommas(total));
         $("#cidr_calc").html(getCIDR(netmask));
-        $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
-        $("#last_addr_calc").html(getBroadcast(ip, netmask));
-        $("#range_calc").html(getRange(ip, netmask));
+
+        if (ip) {
+        	$("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+	        $("#last_addr_calc").html(getBroadcast(ip, netmask));
+	        $("#range_calc").html(getRange(ip, netmask));
+        }
     }
 });
 
@@ -65,7 +82,7 @@ $(".cidr_calc").val($("#slider").slider("value"));
 
 
 /**
- * Updates the number of hosts based on the CIDR slider
+ * Output to the results section based on the CIDR slider
  */
 $("#slider").on("slide", function(event, ui) {
     var total   = getTotalHosts(ui.value);
@@ -85,11 +102,23 @@ $("#slider").on("slide", function(event, ui) {
 
 
 /**
- * Output the value of the # Hosts to the results section
+ * Output to the results section based on the num hosts field
  */
 $("#num_hosts").keyup(function() {
-    var value = $(this).val();
+    var value   = $(this).val();
+    var cidr    = getCIDRFromHosts(value);
+    var netmask = getNetmask(cidr);
+    var ip      = $("#ip_address").val();
+
     $("#num_hosts_calc").html(value);
+    $("#cidr_calc").html(cidr);
+    $("#mask_calc").html(netmask);
+
+    if (ip) {
+        $("#last_addr_calc").html(getBroadcast(ip, netmask));
+        $("#range_calc").html(getRange(ip, netmask));
+        $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+    }
 });
 
 
