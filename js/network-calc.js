@@ -137,6 +137,43 @@ function getCIDR(mask) {
 
 
 /**
+ * Get the CIDR from the number of hosts field - just a simple lookup table
+ */
+function getCIDRFromHosts(hosts) {
+    if (hosts > 1073741822)     { return 1; }
+    else if (hosts > 536870910) { return 2; }
+    else if (hosts > 268435454) { return 3; }
+    else if (hosts > 134217726) { return 4; }
+    else if (hosts > 67108862)  { return 5; }
+    else if (hosts > 33554430)  { return 6; }
+    else if (hosts > 16777214)  { return 7; }
+    else if (hosts > 8388606)   { return 8; }
+    else if (hosts > 4194302)   { return 9; }
+    else if (hosts > 2097150)   { return 10; }
+    else if (hosts > 1048574)   { return 11; }
+    else if (hosts > 524286)    { return 12; }
+    else if (hosts > 262142)    { return 13; }
+    else if (hosts > 131070)    { return 14; }
+    else if (hosts > 65534)     { return 15; }
+    else if (hosts > 32766)     { return 16; }
+    else if (hosts > 16382)     { return 17; }
+    else if (hosts > 8190)      { return 18; }
+    else if (hosts > 4094)      { return 19; }
+    else if (hosts > 2046)      { return 20; }
+    else if (hosts > 1022)      { return 21; }
+    else if (hosts > 510)       { return 22; }
+    else if (hosts > 254)       { return 23; }
+    else if (hosts > 126)       { return 24; }
+    else if (hosts > 62)        { return 25; }
+    else if (hosts > 30)        { return 26; }
+    else if (hosts > 14)        { return 27; }
+    else if (hosts > 6)         { return 28; }
+    else if (hosts > 2)         { return 29; }
+    else (hosts > 1)            { return 30; }
+}
+
+
+/**
  * Function to determine the netmask based on CIDR notation.  Based on example from:
  * StackOverflow, "Converting CIDR address to subnet mask and network address", 
  * May 31, 2010, Accessed November 13, 2013, 
