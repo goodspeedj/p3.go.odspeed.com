@@ -33,14 +33,16 @@ var ie = (function(){
  * Truely disabling the slider would make it impossible to re-enable it by click
  */
 function sliderDisable() {
-    if (ie <= 9) {
-        $("#slider").addClass("ui-state-disabled");
+    $("#slider").addClass("ui-state-disabled");
 
+    if (ie <= 9) {
+        
         // filter attribute causes issues with ie 9
         $("#slider").css({
             "filter": ""
         });
     }
+    
     $("#slider").removeClass("ui-state-default");
 }
 
