@@ -34,14 +34,34 @@ $("#slider").slider({
 $("#ip_address").keyup(function() {
     var ip      = $(this).val();
     var netmask = $("#mask").val();
+    var hosts   = $("#num_hosts").val();
+
     $("#ip_calc").html(ip);
 
     if (ip.match(ip_regex)) {
         if (netmask && netmask.match(ip_regex)) {
-            console.log("inner");
             var total = getTotalHosts(getCIDR(netmask));
             $("#num_hosts_calc").html(numberWithCommas(total));
             $("#cidr_calc").html(getCIDR(netmask));
+            $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+            $("#last_addr_calc").html(getBroadcast(ip, netmask));
+            $("#range_calc").html(getRange(ip, netmask));
+        }
+        if (hosts) {
+            var cidr = getCIDRFromHosts(hosts);
+            netmask  = getNetmask(cidr);
+            $("#num_hosts_calc").html(numberWithCommas(hosts));
+            $("#cidr_calc").html(cidr);
+            $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+            $("#last_addr_calc").html(getBroadcast(ip, netmask));
+            $("#range_calc").html(getRange(ip, netmask));
+        }
+        if ($("#slider").slider("value") != 1) {
+            var cidr = $("#slider").slider("value");
+            netmask  = getNetmask(cidr);
+            var total = getTotalHosts(getCIDR(netmask));
+            $("#num_hosts_calc").html(numberWithCommas(total));
+            $("#cidr_calc").html(cidr);
             $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
             $("#last_addr_calc").html(getBroadcast(ip, netmask));
             $("#range_calc").html(getRange(ip, netmask));
