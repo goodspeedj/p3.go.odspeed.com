@@ -143,7 +143,7 @@ $("#num_hosts").keyup(function() {
     var ip      = $("#ip_address").val();
 
     if (value.match(number)) {
-       $("#num_hosts_calc").html(value);
+        $("#num_hosts_calc").html(numberWithCommas(getTotalHosts(cidr)));
         $("#cidr_calc").html(cidr);
         $("#mask_calc").html(netmask);
         $("#slider").slider("value", getCIDR(netmask));
