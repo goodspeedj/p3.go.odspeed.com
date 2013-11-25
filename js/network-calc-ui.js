@@ -156,7 +156,7 @@ $(function() {
 
 
 
-$("#mask").click(function() {
+$("#mask").focus(function() {
 
     // enable the mask field
     $("#mask").attr('ignore', 'false').css({
@@ -202,7 +202,7 @@ $("#slider .ui-slider-handle").focus(function() {
 });
 
 
-$("#num_hosts").click(function() {
+$("#num_hosts").focus(function() {
 
     // enable the num_hosts field
     $("#num_hosts").attr('ignore', 'false').css({
