@@ -10,6 +10,8 @@
 // Regex to match valid IP addresses
 var ip_regex = "\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
 
+// Regex to match whole numbers
+var number = /^\d+$/;
 
 // Reset the form on reload
 $(document).ready(function () {
@@ -137,16 +139,18 @@ $("#num_hosts").keyup(function() {
     var netmask = getNetmask(cidr);
     var ip      = $("#ip_address").val();
 
-    $("#num_hosts_calc").html(value);
-    $("#cidr_calc").html(cidr);
-    $("#mask_calc").html(netmask);
-    $("#slider").slider("value", getCIDR(netmask));
-    $(".cidr_calc").val($("#slider").slider("value"));
+    if (value.match(number)) {
+       $("#num_hosts_calc").html(value);
+        $("#cidr_calc").html(cidr);
+        $("#mask_calc").html(netmask);
+        $("#slider").slider("value", getCIDR(netmask));
+        $(".cidr_calc").val($("#slider").slider("value"));
 
-    if (ip) {
-        $("#last_addr_calc").html(getBroadcast(ip, netmask));
-        $("#range_calc").html(getRange(ip, netmask));
-        $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+        if (ip) {
+            $("#last_addr_calc").html(getBroadcast(ip, netmask));
+            $("#range_calc").html(getRange(ip, netmask));
+            $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+        } 
     }
 });
 
@@ -201,7 +205,8 @@ $("#mask").focus(function() {
     sliderDisable();
 
     // remove form validation errors from num_hosts
-    $("label[for='num_hosts']").hide();
+    //$("label.error[for='num_hosts'").hide();
+
 
     // Blank out previous values
     $("#cidr_calc").html("");
@@ -227,7 +232,7 @@ $("#slider .ui-slider-handle").focus(function() {
     $("#num_hosts").val("");
 
     // clear any validation errors
-    $(".error").hide();
+    //$(".error").hide();
 
     // Blank out previous values
     $("#mask_calc").html("");
@@ -252,8 +257,7 @@ $("#num_hosts").focus(function() {
     sliderDisable();
 
     // remove form validation errors from mask
-    // remove form validation errors from num_hosts
-    $("label[for='mask']").hide();
+    //$("label.error[for='mask'").hide();
 
     // Blank out previous values
     $("#mask_calc").html("");
