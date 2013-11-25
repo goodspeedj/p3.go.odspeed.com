@@ -6,7 +6,13 @@
  */
 
 
- function resetForms() {
+/**
+ * Reset the form on page reload.  Based on example from:
+ * StackOverflow, "Is it possible to clear a form an reset (reload) the page with one button?",
+ * March 7, 2013, Accessed November 25, 2013, 
+ * http://stackoverflow.com/questions/6666363/is-it-possible-to-clear-a-form-an-reset-reload-the-page-with-one-button
+ */
+function resetForms() {
     for (i = 0; i < document.forms.length; i++) {
         document.forms[i].reset();
     }
