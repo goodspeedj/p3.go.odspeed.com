@@ -10,13 +10,22 @@
 // Regex to match valid IP addresses
 var ip_regex = "\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
 
+
 // Reset the form on reload
 $(document).ready(function () {
     resetForms();
 });
-//$("#calculator")[0].reset();
 
 
+/**
+ * Auto focus on IP Address field for IE 9
+ * Example from:
+ * I like stuff, "How to Make HTML5 Autofocus Work in IE", March 29, 2012, Accessed November 25, 2013,
+ * http://ilikestuffblog.com/2012/03/29/how-to-make-html5-autofocus-work-in-ie/
+ */
+$(function() {
+  $('[autofocus]:not(:focus)').eq(0).focus();
+});
 
 
 /**
