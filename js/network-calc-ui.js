@@ -108,13 +108,6 @@ $("#mask").keyup(function() {
 
 
 /**
- * Output the value of the slider on the page next to the bar and in the 
- * results section
- */
-$(".cidr_calc").val($("#slider").slider("value"));
-
-
-/**
  * Output to the results section based on the CIDR slider
  */
 $("#slider").on("slide", function(event, ui) {
@@ -125,6 +118,7 @@ $("#slider").on("slide", function(event, ui) {
     $("#num_hosts_calc").html(numberWithCommas(total));
     $("#mask_calc").html(netmask);
     $("#cidr_calc").html(ui.value);
+    $("#cidr_slider").html(ui.value);
 
     if (ip) {
         $("#last_addr_calc").html(getBroadcast(ip, netmask));
