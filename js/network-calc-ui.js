@@ -23,7 +23,7 @@ $("#slider").slider({
     min: 1,
     max: 30,
     slide: function(event, ui) {
-    	$(".cidr_calc").val(ui.value);   
+        $(".cidr_calc").val(ui.value);   
     }
 });
 
@@ -37,16 +37,15 @@ $("#ip_address").keyup(function() {
     $("#ip_calc").html(ip);
 
     if (ip.match(ip_regex)) {
-    	console.log("netmask: " + netmask);
-    	if (netmask && netmask.match(ip_regex)) {
-    		console.log("inner");
-    		var total = getTotalHosts(getCIDR(netmask));
-	        $("#num_hosts_calc").html(numberWithCommas(total));
-	        $("#cidr_calc").html(getCIDR(netmask));
-	        $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
-	        $("#last_addr_calc").html(getBroadcast(ip, netmask));
-	        $("#range_calc").html(getRange(ip, netmask));
-    	}
+        if (netmask && netmask.match(ip_regex)) {
+            console.log("inner");
+            var total = getTotalHosts(getCIDR(netmask));
+            $("#num_hosts_calc").html(numberWithCommas(total));
+            $("#cidr_calc").html(getCIDR(netmask));
+            $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+            $("#last_addr_calc").html(getBroadcast(ip, netmask));
+            $("#range_calc").html(getRange(ip, netmask));
+        }
     }
 });
 
@@ -64,11 +63,13 @@ $("#mask").keyup(function() {
         var total = getTotalHosts(getCIDR(netmask));
         $("#num_hosts_calc").html(numberWithCommas(total));
         $("#cidr_calc").html(getCIDR(netmask));
+        $("#slider").slider("value", getCIDR(netmask));
+        $(".cidr_calc").val($("#slider").slider("value"));
 
         if (ip) {
-        	$("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
-	        $("#last_addr_calc").html(getBroadcast(ip, netmask));
-	        $("#range_calc").html(getRange(ip, netmask));
+            $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+            $("#last_addr_calc").html(getBroadcast(ip, netmask));
+            $("#range_calc").html(getRange(ip, netmask));
         }
     }
 });
@@ -113,6 +114,8 @@ $("#num_hosts").keyup(function() {
     $("#num_hosts_calc").html(value);
     $("#cidr_calc").html(cidr);
     $("#mask_calc").html(netmask);
+    $("#slider").slider("value", getCIDR(netmask));
+    $(".cidr_calc").val($("#slider").slider("value"));
 
     if (ip) {
         $("#last_addr_calc").html(getBroadcast(ip, netmask));
@@ -135,21 +138,21 @@ $(function() {
     $('#calculator').validate({
         success: "valid",
         rules: {
-    	    ip_address: {
+            ip_address: {
                 required: true,
                 IP4Checker: true
             },
             mask: {
-            	IP4Checker: true
+                IP4Checker: true
             },
             num_hosts: {
-            	number: true
+                number: true
             }
         },
         messages: {
-        	ip_address: "Please enter a valid IP address",
-        	mask: "Please enter a valid subnet mask",
-        	num_hosts: "Please enter a valid number"
+            ip_address: "Please enter a valid IP address",
+            mask: "Please enter a valid subnet mask",
+            num_hosts: "Please enter a valid number"
         }
     });
 });
