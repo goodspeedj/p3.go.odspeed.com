@@ -136,7 +136,7 @@ $(function() {
     }, 'Please enter a valid IP address');
 
     $('#calculator').validate({
-        success: "valid",
+        //success: "valid",
         rules: {
             ip_address: {
                 required: true,
@@ -176,6 +176,9 @@ $("#mask").focus(function() {
     $("#slider").removeClass("ui-state-default");
     $("#slider").addClass("ui-state-disabled");
 
+    // remove form validation errors from num_hosts
+    $("label[for='num_hosts']").hide();
+
     // Blank out previous values
     $("#cidr_calc").html("");
     $("#num_hosts_calc").html("");
@@ -199,6 +202,9 @@ $("#slider .ui-slider-handle").focus(function() {
     });
     $("#num_hosts").val("");
 
+    // clear any validation errors
+    $(".error").hide();
+
     // Blank out previous values
     $("#mask_calc").html("");
     $("#num_hosts_calc").html("");
@@ -221,6 +227,10 @@ $("#num_hosts").focus(function() {
     // disable the slider
     $("#slider").removeClass("ui-state-default");
     $("#slider").addClass("ui-state-disabled");
+
+    // remove form validation errors from mask
+    // remove form validation errors from num_hosts
+    $("label[for='mask']").hide();
 
     // Blank out previous values
     $("#mask_calc").html("");
