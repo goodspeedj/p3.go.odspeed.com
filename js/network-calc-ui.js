@@ -100,6 +100,9 @@ $("#mask").keyup(function() {
         $("#slider").slider("value", getCIDR(netmask));
         $(".cidr_calc").val($("#slider").slider("value"));
 
+        // remove form validation errors from num_hosts - less distracting
+        $("label.error[for='num_hosts'").hide();
+
         if (ip) {
             $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
             $("#last_addr_calc").html(getBroadcast(ip, netmask));
@@ -145,6 +148,9 @@ $("#num_hosts").keyup(function() {
         $("#mask_calc").html(netmask);
         $("#slider").slider("value", getCIDR(netmask));
         $(".cidr_calc").val($("#slider").slider("value"));
+
+        // remove form validation errors from mask - less distracting
+        $("label.error[for='mask'").hide();
 
         if (ip) {
             $("#last_addr_calc").html(getBroadcast(ip, netmask));
@@ -204,10 +210,6 @@ $("#mask").focus(function() {
     // disable the slider
     sliderDisable();
 
-    // remove form validation errors from num_hosts
-    //$("label.error[for='num_hosts'").hide();
-
-
     // Blank out previous values
     $("#cidr_calc").html("");
     $("#num_hosts_calc").html("");
@@ -232,7 +234,7 @@ $("#slider .ui-slider-handle").focus(function() {
     $("#num_hosts").val("");
 
     // clear any validation errors
-    //$(".error").hide();
+
 
     // Blank out previous values
     $("#mask_calc").html("");
@@ -255,9 +257,6 @@ $("#num_hosts").focus(function() {
     
     // disable the slider
     sliderDisable();
-
-    // remove form validation errors from mask
-    //$("label.error[for='mask'").hide();
 
     // Blank out previous values
     $("#mask_calc").html("");
