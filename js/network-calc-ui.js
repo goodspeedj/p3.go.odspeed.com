@@ -11,7 +11,10 @@
 var ip_regex = "\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
 
 // Reset the form on reload
-$("#calculator")[0].reset();
+$(document).ready(function () {
+    resetForms();
+});
+//$("#calculator")[0].reset();
 
 
 
@@ -208,7 +211,8 @@ $("#mask").focus(function() {
 $("#slider .ui-slider-handle").focus(function() {
 
     // enable the slider
-    $("#slider").slider("enable");
+    $("#slider").addClass("ui-state-default");
+    $("#slider").removeClass("ui-state-disabled");
 
     // disable the mask field
     $("#mask").attr('ignore','true').css({

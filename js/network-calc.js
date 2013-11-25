@@ -6,6 +6,13 @@
  */
 
 
+ function resetForms() {
+    for (i = 0; i < document.forms.length; i++) {
+        document.forms[i].reset();
+    }
+}
+
+
 /**
  * Adds commas to numbers.  Based on example from:
  * StackOverflow, "How to print a number with commas as thousands separators in JavaScript",
