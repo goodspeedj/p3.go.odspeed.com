@@ -35,7 +35,7 @@ label {
 }
 
 #output {
-  max-width: 550px;
+  max-width: 600px;
   margin: 0px auto;
   padding: 20px;
   font-family: Consolas, 'Courier New', monospace;
