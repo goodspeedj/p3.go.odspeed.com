@@ -190,7 +190,6 @@ $(function() {
 });
 
 
-
 $("#mask").focus(function() {
 
     // enable the mask field
@@ -200,13 +199,12 @@ $("#mask").focus(function() {
 
     // disable the num_hosts field
     $("#num_hosts").attr('ignore','true').css({
-        'background-color': '#EBEBE4'
+        "background-color": '#EBEBE4'
     });
     $("#num_hosts").val("");
     
     // disable the slider
-    $("#slider").removeClass("ui-state-default");
-    $("#slider").addClass("ui-state-disabled");
+    sliderDisable();
 
     // remove form validation errors from num_hosts
     $("label[for='num_hosts']").hide();
@@ -220,8 +218,7 @@ $("#mask").focus(function() {
 $("#slider .ui-slider-handle").focus(function() {
 
     // enable the slider
-    $("#slider").addClass("ui-state-default");
-    $("#slider").removeClass("ui-state-disabled");
+    $("#slider").slider("enable");
 
     // disable the mask field
     $("#mask").attr('ignore','true').css({
@@ -258,8 +255,7 @@ $("#num_hosts").focus(function() {
     $("#mask").val("");
     
     // disable the slider
-    $("#slider").removeClass("ui-state-default");
-    $("#slider").addClass("ui-state-disabled");
+    sliderDisable();
 
     // remove form validation errors from mask
     // remove form validation errors from num_hosts

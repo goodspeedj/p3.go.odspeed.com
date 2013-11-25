@@ -6,6 +6,44 @@
  */
 
 
+/** 
+ * Test for IE 9.  Function from:
+ * James Padolsey, "Detect IE in JS using conditional comments", August 20, 2010, 
+ * Accessed November 25, 2013, http://james.padolsey.com/javascript/detect-ie-in-js-using-conditional-comments/
+ */
+var ie = (function(){
+ 
+    var undef,
+        v = 3,
+        div = document.createElement('div'),
+        all = div.getElementsByTagName('i');
+ 
+    while (
+        div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+        all[0]
+    );
+ 
+    return v > 4 ? v : undef;
+ 
+}());
+
+
+/**
+ * "Disables" the slider by loading CSS rules to make the slider look disabled
+ * Truely disabling the slider would make it impossible to re-enable it by click
+ */
+function sliderDisable() {
+    if (ie <= 9) {
+        $("#slider").addClass("ui-state-disabled");
+
+        // filter attribute causes issues with ie 9
+        $("#slider").css({
+            "filter": ""
+        });
+    }
+    $("#slider").removeClass("ui-state-default");
+}
+
 /**
  * Reset the form on page reload.  Based on example from:
  * StackOverflow, "Is it possible to clear a form an reset (reload) the page with one button?",
