@@ -59,9 +59,8 @@ $("#ip_address").keyup(function() {
             var total = getTotalHosts(getCIDR(netmask));
             $("#num_hosts_calc").html(numberWithCommas(total));
             $("#cidr_calc").html(getCIDR(netmask));
-            $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
-            $("#last_addr_calc").html(getBroadcast(ip, netmask));
-            $("#range_calc").html(getRange(ip, netmask));
+            
+            displayIPResults(ip, netmask);
         }
         if (hosts) {
             var cidr = getCIDRFromHosts(hosts);
@@ -69,9 +68,8 @@ $("#ip_address").keyup(function() {
             netmask  = getNetmask(cidr);
             $("#num_hosts_calc").html(numberWithCommas(hosts));
             $("#cidr_calc").html(cidr);
-            $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
-            $("#last_addr_calc").html(getBroadcast(ip, netmask));
-            $("#range_calc").html(getRange(ip, netmask));
+
+            displayIPResults(ip, netmask);
         }
         if ($("#slider").slider("value") != 1) {
             var cidr = $("#slider").slider("value");
@@ -79,9 +77,8 @@ $("#ip_address").keyup(function() {
             var total = getTotalHosts(getCIDR(netmask));
             $("#num_hosts_calc").html(numberWithCommas(total));
             $("#cidr_calc").html(cidr);
-            $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
-            $("#last_addr_calc").html(getBroadcast(ip, netmask));
-            $("#range_calc").html(getRange(ip, netmask));
+
+            displayIPResults(ip, netmask);
         }
     }
 });
@@ -152,9 +149,7 @@ $("#num_hosts").keyup(function() {
         $("label.error[for='mask'").hide();
 
         if (ip) {
-            $("#last_addr_calc").html(getBroadcast(ip, netmask));
-            $("#range_calc").html(getRange(ip, netmask));
-            $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+            displayIPResults(ip, netmask);
         } 
     }
 });
