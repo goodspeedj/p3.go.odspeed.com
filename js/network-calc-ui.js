@@ -58,6 +58,9 @@ $("#ip_address").keyup(function() {
         if (netmask && netmask.match(ip_regex)) {
             var cidr = getCIDR(netmask);
             hosts = getTotalHosts(getCIDR(netmask));
+            var bin_mask = ipToBin(netmask);
+
+            $("#bin_mask_calc").html(bin_mask);
 
             displayHostsCidr(hosts, cidr);
             displayNetLastRange(ip, netmask);
@@ -65,7 +68,9 @@ $("#ip_address").keyup(function() {
         if (hosts) {
             var cidr = getCIDRFromHosts(hosts);
             netmask  = getNetmask(cidr);
+            var bin_mask = ipToBin(netmask);
 
+            $("#bin_mask_calc").html(bin_mask);
             displayHostsCidr(hosts, cidr);
             displayNetLastRange(ip, netmask);
         }
@@ -73,7 +78,9 @@ $("#ip_address").keyup(function() {
             var cidr = $("#slider").slider("value");
             netmask  = getNetmask(cidr);
             hosts = getTotalHosts(getCIDR(netmask));
+            var bin_mask = ipToBin(netmask);
             
+            $("#bin_mask_calc").html(bin_mask);
             displayHostsCidr(hosts, cidr);
             displayNetLastRange(ip, netmask);
         }
@@ -116,15 +123,17 @@ $("#mask").keyup(function() {
  * Output to the results section based on the CIDR slider
  */
 $("#slider").on("slide", function(event, ui) {
-    var hosts   = getTotalHosts(ui.value);
-    var netmask = getNetmask(ui.value);
-    var ip      = $("#ip_address").val();
-    var cidr    = ui.value;
+    var hosts    = getTotalHosts(ui.value);
+    var netmask  = getNetmask(ui.value);
+    var bin_mask = ipToBin(netmask);
+    var ip       = $("#ip_address").val();
+    var cidr     = ui.value;
 
     displayHostsCidr(hosts, cidr);
 
     $("#mask_calc").html(netmask);
     $("#cidr_slider").html(cidr);
+    $("#bin_mask_calc").html(bin_mask);
 
     if (ip) {
         displayNetLastRange(ip, netmask);
@@ -136,10 +145,11 @@ $("#slider").on("slide", function(event, ui) {
  * Output to the results section based on the num hosts field
  */
 $("#num_hosts").keyup(function() {
-    var value   = $(this).val();
-    var cidr    = getCIDRFromHosts(value);
-    var netmask = getNetmask(cidr);
-    var ip      = $("#ip_address").val();
+    var value    = $(this).val();
+    var cidr     = getCIDRFromHosts(value);
+    var netmask  = getNetmask(cidr);
+    var bin_mask = ipToBin(netmask);
+    var ip       = $("#ip_address").val();
 
     if (value.match(number)) {
         var hosts = getTotalHosts(cidr);
@@ -147,6 +157,7 @@ $("#num_hosts").keyup(function() {
         displayHostsCidr(hosts, cidr);
 
         $("#mask_calc").html(netmask);
+        $("#bin_mask_calc").html(bin_mask);
         $("#slider").slider("value", getCIDR(netmask));
         $("#cidr_slider").html($("#slider").slider("value"));
 
