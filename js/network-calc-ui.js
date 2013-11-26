@@ -48,9 +48,9 @@ $("#slider").slider({
  * Output to the results section based on the ip address field
  */
 $("#ip_address").keyup(function() {
-    var ip      = $(this).val();
-    var netmask = $("#mask").val();
-    var hosts   = $("#num_hosts").val();
+    var ip       = $(this).val();
+    var netmask  = $("#mask").val();
+    var hosts    = $("#num_hosts").val();
 
     $("#ip_calc").html(ip);
 
@@ -85,8 +85,10 @@ $("#ip_address").keyup(function() {
  * Output to the results section based on the netmask field
  */
 $("#mask").keyup(function() {
-    var netmask = $(this).val();
-    var ip      = $("#ip_address").val();
+    var netmask  = $(this).val();
+    var bin_mask = ipToBin(netmask);
+    var ip       = $("#ip_address").val();
+    
     $("#mask_calc").html(netmask);
 
     // if there is a valid netmask populate the results
@@ -96,6 +98,7 @@ $("#mask").keyup(function() {
         
         displayHostsCidr(hosts, cidr);
 
+        $("#bin_mask_calc").html(bin_mask);
         $("#slider").slider("value", getCIDR(netmask));
         $("#cidr_slider").html($("#slider").slider("value"));
 

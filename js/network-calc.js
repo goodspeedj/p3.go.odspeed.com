@@ -120,14 +120,19 @@ function displayNetLastRange(ip, netmask) {
 
 
 /**
- * Convert a full IP to binary with out dots
+ * Convert a full IP to binary
  */
 function ipToBin(ip) {
     var ip_arr = ip.split(".");
     var ip_bin;
 
     for (var i = 0; i < ip_arr.length; i++) {
-        ip_bin = ip_bin + decToBin(ip_arr[i]);
+        if (!ip_bin) {
+            ip_bin = decToBin(ip_arr[i]);
+        }
+        else {
+            ip_bin = ip_bin + "." + decToBin(ip_arr[i]);
+        }
     }
 
     return ip_bin;
