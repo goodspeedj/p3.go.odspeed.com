@@ -6,6 +6,8 @@
  */
 
 
+// Form field disabled color
+var disabled_color = "#EBEBE4";
 
 // Regex to match valid IP addresses
 var ip_regex = "\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
@@ -203,7 +205,7 @@ $("#mask").focus(function() {
 
     // disable the num_hosts field
     $("#num_hosts").attr('ignore','true').css({
-        "background-color": '#EBEBE4'
+        "background-color": disabled_color
     });
     $("#num_hosts").val("");
     
@@ -223,18 +225,15 @@ $("#slider .ui-slider-handle").focus(function() {
 
     // disable the mask field
     $("#mask").attr('ignore','true').css({
-        'background-color': '#EBEBE4'
+        'background-color': disabled_color
     });
     $("#mask").val("");
 
     // disable the num hosts field
     $("#num_hosts").attr('ignore','true').css({
-        'background-color': '#EBEBE4'
+        'background-color': disabled_color
     });
     $("#num_hosts").val("");
-
-    // clear any validation errors
-
 
     // Blank out previous values
     $("#mask_calc").html("");
@@ -251,7 +250,7 @@ $("#num_hosts").focus(function() {
 
     // disable the mask field
     $("#mask").attr('ignore','true').css({
-        'background-color': '#EBEBE4'
+        'background-color': disabled_color
     });
     $("#mask").val("");
     
@@ -262,5 +261,3 @@ $("#num_hosts").focus(function() {
     $("#mask_calc").html("");
     $("#cidr_calc").html("");
 });
-
-//$("#slider").slider("disable");
