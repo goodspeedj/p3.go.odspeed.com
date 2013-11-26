@@ -100,11 +100,19 @@ function decToBin(val) {
 }
 
 
+/**
+ * Display the Number of Hosts and CIDR results
+ */
+function displayHostsCidr(hosts, cidr) {
+    $("#num_hosts_calc").html(numberWithCommas(hosts));
+    $("#cidr_calc").html(cidr);
+}
+
 
 /**
  * Display results if the IP and Netmask is known
  */
-function displayIPResults(ip, netmask) {
+function displayNetLastRange(ip, netmask) {
     $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
     $("#last_addr_calc").html(getBroadcast(ip, netmask));
     $("#range_calc").html(getRange(ip, netmask));
