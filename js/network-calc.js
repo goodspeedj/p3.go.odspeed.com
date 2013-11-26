@@ -100,6 +100,17 @@ function decToBin(val) {
 }
 
 
+
+/**
+ * Display results if the IP and Netmask is known
+ */
+function displayIPResults(ip, netmask) {
+    $("#net_addr_calc").html(numToIP(getNetworkAddress(ip, netmask)));
+    $("#last_addr_calc").html(getBroadcast(ip, netmask));
+    $("#range_calc").html(getRange(ip, netmask));
+}
+
+
 /**
  * Convert a full IP to binary with out dots
  */
