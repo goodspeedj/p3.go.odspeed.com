@@ -145,9 +145,8 @@ function ipToBin(ip) {
  * translates to -1062731514 as a number.
  */
 function ipToNum(ip) {
-    console.log(ip);
     var ip_num = ip.match(/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/);
-    console.log("here: "+ ip_num[1]<<24);
+
     return (+ip_num[1]<<24) + (+ip_num[2]<<16) + (+ip_num[3]<<8) + (+ip_num[4]);
 }
 
@@ -277,7 +276,6 @@ function getNetmask(cidr) {
  * (-1062731514 & -256) = -1062731520 which can be converted to 192.168.1.0
  */
 function getNetworkAddress(ip, mask) {
-    console.log("getNetworkAddress: " + ip);
     var ip_num   = ipToNum(ip);
     var mask_num = ipToNum(mask);
 
