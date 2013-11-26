@@ -60,7 +60,7 @@ $("#ip_address").keyup(function() {
             $("#num_hosts_calc").html(numberWithCommas(total));
             $("#cidr_calc").html(getCIDR(netmask));
             
-            displayIPResults(ip, netmask);
+            displayNetLastRange(ip, netmask);
         }
         if (hosts) {
             var cidr = getCIDRFromHosts(hosts);
@@ -69,7 +69,7 @@ $("#ip_address").keyup(function() {
             $("#num_hosts_calc").html(numberWithCommas(hosts));
             $("#cidr_calc").html(cidr);
 
-            displayIPResults(ip, netmask);
+            displayNetLastRange(ip, netmask);
         }
         if ($("#slider").slider("value") != 1) {
             var cidr = $("#slider").slider("value");
@@ -78,7 +78,7 @@ $("#ip_address").keyup(function() {
             $("#num_hosts_calc").html(numberWithCommas(total));
             $("#cidr_calc").html(cidr);
 
-            displayIPResults(ip, netmask);
+            displayNetLastRange(ip, netmask);
         }
     }
 });
@@ -104,7 +104,7 @@ $("#mask").keyup(function() {
         $("label.error[for='num_hosts'").hide();
 
         if (ip) {
-            displayIPResults(ip, netmask);
+            displayNetLastRange(ip, netmask);
         }
     }
 });
@@ -124,7 +124,7 @@ $("#slider").on("slide", function(event, ui) {
     $("#cidr_slider").html(ui.value);
 
     if (ip) {
-        displayIPResults(ip, netmask);
+        displayNetLastRange(ip, netmask);
     }
 });
 
@@ -149,7 +149,7 @@ $("#num_hosts").keyup(function() {
         $("label.error[for='mask'").hide();
 
         if (ip) {
-            displayIPResults(ip, netmask);
+            displayNetLastRange(ip, netmask);
         } 
     }
 });
