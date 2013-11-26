@@ -98,7 +98,7 @@ $("#mask").keyup(function() {
         $("#num_hosts_calc").html(numberWithCommas(total));
         $("#cidr_calc").html(getCIDR(netmask));
         $("#slider").slider("value", getCIDR(netmask));
-        $(".cidr_calc").val($("#slider").slider("value"));
+        $("#cidr_slider").html($("#slider").slider("value"));
 
         // remove form validation errors from num_hosts - less distracting
         $("label.error[for='num_hosts'").hide();
@@ -147,7 +147,7 @@ $("#num_hosts").keyup(function() {
         $("#cidr_calc").html(cidr);
         $("#mask_calc").html(netmask);
         $("#slider").slider("value", getCIDR(netmask));
-        $(".cidr_calc").val($("#slider").slider("value"));
+        $("#cidr_slider").html($("#slider").slider("value"));
 
         // remove form validation errors from mask - less distracting
         $("label.error[for='mask'").hide();
